@@ -1,30 +1,26 @@
 package ru.netology
 
-import java.util.*
-
 data class Post(
-    val id: Int,
-    val ownerId: Long,
-    val fromId: Long,
-    val createdBy: Long,
-    val date: Long,
-    val text: String,
-    val replyOwnerId: Long,
-    val replyPostId: Long,
-    val friendsOnly: Boolean,
+    val id: Int = 1,
+    val ownerId: Long = 0,
+    val fromId: Long = 0,
+    val createdBy: Long = 0,
+    val date: Long = 0,
+    val text: String = "Hi",
+    val replyOwnerId: Long = 0,
+    val replyPostId: Long = 0,
+    val friendsOnly: Boolean = false,
     val comments: Int = 0,
-    val copyright: Boolean,
     val likes: Int = 0,
     val reposts: Int = 0,
     val views: Int = 0,
-    val postType: String, //тип записи
-    val signerId: Boolean,
-    val canPin: Boolean,
-    val canDelete: Boolean,
-    val canEdit: Boolean,
-    val isPinned: Boolean,
-    val markedAsAds: Boolean,
-    val isFavorite: Boolean,
-    val donut: String,
-    val postponedId: Objects
+    val postType: String = "",
+    val signerId: Boolean = true, //тип записи
+    val canPin: Boolean = true,
+    val canEdit: Boolean = true,
+    val isPinned: Boolean = true,
+    val markedAsAds: Boolean = true,
+    val isFavorite: Boolean = true,
+    val donut: String = "",
+    val postponedId: Int = 0,
 )
