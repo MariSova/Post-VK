@@ -23,7 +23,17 @@ data class Post(
     val isFavorite: Boolean,
     val donut: String?,
     val postponedId: Int
-)
+) {
+
+    data class Comment(
+        val id: Int?,
+        val count: Int?,
+        val canPost: Boolean? = true,
+        val groupsCanPost: Boolean? = true,
+        val canClose: Boolean? = true,
+        val canOpen: Boolean? = true,
+    )
+}
 
 open class Likes (
     val count: Int?,
