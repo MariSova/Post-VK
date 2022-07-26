@@ -9,7 +9,7 @@ data class Post(
     val text: String,
     val replyOwnerId: Long,
     val replyPostId: Long,
-    val friendsOnly: Boolean ,
+    val friendsOnly: Boolean,
     val comments: Int,
     val likes: Int,
     val reposts: Int?,
@@ -22,46 +22,48 @@ data class Post(
     val markedAsAds: Boolean,
     val isFavorite: Boolean,
     val donut: String?,
-    val postponedId: Int
+    val postponedId: Int,
 ) {
 
-    data class Comment(
-        val id: Int?,
-        val count: Int?,
-        val canPost: Boolean? = true,
-        val groupsCanPost: Boolean? = true,
-        val canClose: Boolean? = true,
-        val canOpen: Boolean? = true,
-    )
-}
 
-open class Likes (
+}
+data class Comment(
+    val id: Int?,
+    val count: Int?,
+    val canPost: Boolean? = true,
+    val groupsCanPost: Boolean? = true,
+    val canClose: Boolean? = true,
+    val canOpen: Boolean? = true,
+)
+open class Likes(
     val count: Int?,
     val userLikes: Boolean,
     val canLike: Boolean,
     val canPublish: Boolean,
-    val postId: Int?
+    val postId: Int?,
 
-        )
- class AttachmentLikes(
-     count: Int?,
-     userLikes: Boolean,
-     canLike: Boolean,
-     canPublish: Boolean,
-     postId: Int?,
-     val original: Likes
- ): Likes(count, userLikes, canLike, canPublish, postId)
+    )
+
+class AttachmentLikes(
+    count: Int?,
+    userLikes: Boolean,
+    canLike: Boolean,
+    canPublish: Boolean,
+    postId: Int?,
+    val original: Likes,
+) : Likes(count, userLikes, canLike, canPublish, postId)
 
 sealed class Attachments(val type: String)
 
 data class ArrayAttachments(
-    val type: String
-){
+    val type: String,
+) {
     data class Video(val video: Video) : Attachments("video")
     data class Audio(val audio: Audio) : Attachments("audio")
     data class Photo(val photo: Photo) : Attachments("photo")
     data class Document(val document: Document) : Attachments("document")
 }
+
 fun fooAttachments(att: Attachments): String = when (att) {
     is ArrayAttachments.Audio -> "audio \nid: 1, \nalbumId: 1, \nownerId: 1, \nuserId: 1"
     is ArrayAttachments.Document -> "document \nid: 1, \nalbumId: 1, \nownerId: 1, \nuserId: 1"

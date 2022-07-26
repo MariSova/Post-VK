@@ -3,7 +3,7 @@ package ru.netology
 class WallService {
     private var posts = emptyArray<Post>()
     private var lastIndex = 0
-    private var comments = emptyArray<Post.Comment>()
+    private var comments = emptyArray<Comment>()
 
     fun add(post: Post): Post {
         posts += post.copy(id = ++lastIndex)
@@ -11,15 +11,13 @@ class WallService {
         return posts.last()
     }
 
-    fun createComment(post: Post): Int? {
-        val postId = post.id
-        val postComment = post.comments
+    fun createComment(postId: Int, comment: Comment): Comment {
         for (post in posts) {
             if (post.id == postId) {
-                return postComment
-            } else throw PostNotFoundException("Error")
+                comments += comment
+            }
         }
-        return null
+        return if (comments.contains(comment)) comment else throw PostNotFoundException()
     }
 
     fun update(post: Post): Boolean {
